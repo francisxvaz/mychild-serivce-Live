@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AuthorService.cs" />
     <Compile Include="Service\BlogService.cs" />
+    <Compile Include="Service\IBlogService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

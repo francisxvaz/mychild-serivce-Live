@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyChild.Data.Service
 {
-    public class BlogService
+    public class BlogService : IBlogService
     {
         private MyChildDbContext db = new MyChildDbContext();
 
