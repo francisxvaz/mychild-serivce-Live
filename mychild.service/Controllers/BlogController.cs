@@ -13,6 +13,11 @@ namespace mychild.service.Controllers
     {
         private IBlogService _blogService;
 
+        public BlogController(IBlogService blogService)
+        {
+            _blogService = blogService;
+        }
+
         public BlogController()
         {
             _blogService = new BlogService();
