@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Threading.Tasks;
 using MyChild.Data;
 
 namespace MyChild.Data
@@ -19,5 +21,9 @@ namespace MyChild.Data
 
         }
 
+        internal Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace mychild.service.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class BlogController : ApiController
     {
         private IBlogService _blogService;
@@ -23,37 +25,38 @@ namespace mychild.service.Controllers
             _blogService = new BlogService();
         }
 
-        // GET: api/Blog
-        public IEnumerable<Blog> Get()
+
+        public IEnumerable<Blog> GetAll()
         {
             return new BlogService().GetAllBlogs();
         }
 
-        // GET: api/Blog
-        public IEnumerable<Blog> Get(int pageLength, int pageNumber = 0) 
+        //public IEnumerable<Blog> Get(int pageLength, int pageNumber = 0)
+        //{
+        //    return new BlogService().GetBlogsByPage(pageLength, pageNumber);
+        //}
+
+
+        //public Blog GetById(int id)
+        //{
+        //    return new BlogService().GetBlog(id);
+        //}
+
+        public void Post([FromBody]Blog blog)
         {
-            return new BlogService().GetBlogsByPage(pageLength,pageNumber);
+            new BlogService().AddBlog(blog);
         }
 
-        // GET: api/Blog/5
-        public Blog Get(int id)
+        
+        public void Put(int id, [FromBody]Blog blog)
         {
-            return new BlogService().GetBlog(id);
+            new BlogService().EditBlog(blog);
         }
 
-        // POST: api/Blog
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Blog/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Blog/5
+        
         public void Delete(int id)
         {
+            new BlogService().DeleteBlog(id);
         }
     }
 }

@@ -36,13 +36,14 @@ namespace MyChild.Data.Service
             return blog;
         }
 
+        
         public Blog AddBlog(Blog blog)
         {
             if (blog == null)
                 throw new ArgumentNullException("passed in blog cannot be null");
                 
             db.Blog.Add(blog);
-            db.SaveChanges();
+            //db.SaveChanges();
 
             return blog;
         }
@@ -71,7 +72,8 @@ namespace MyChild.Data.Service
             var blog = GetBlog(id);
 
             db.Blog.Remove(blog);
-            return db.SaveChanges();
+            //return db.SaveChanges();
+            return 0;
         }
 
         private bool BlogExists(int id)
