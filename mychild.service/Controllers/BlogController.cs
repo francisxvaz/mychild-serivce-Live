@@ -37,10 +37,10 @@ namespace mychild.service.Controllers
         //}
 
 
-        //public Blog GetById(int id)
-        //{
-        //    return new BlogService().GetBlog(id);
-        //}
+        public Blog GetById(int id)
+        {
+            return new BlogService().GetBlog(id);
+        }
 
         public void Post([FromBody]Blog blog)
         {
