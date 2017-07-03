@@ -29,6 +29,12 @@ namespace mychild.service.Controllers
             return new BlogService().GetAllBlogs();
         }
 
+        // GET: api/Blog
+        public IEnumerable<Blog> Get(int pageLength, int pageNumber = 0) 
+        {
+            return new BlogService().GetBlogsByPage(pageLength,pageNumber);
+        }
+
         // GET: api/Blog/5
         public Blog Get(int id)
         {

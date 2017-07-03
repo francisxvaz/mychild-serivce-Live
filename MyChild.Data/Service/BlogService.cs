@@ -12,11 +12,23 @@ namespace MyChild.Data.Service
 
         public IQueryable<Blog> GetAllBlogs()
         {
-            return db.Blog.Include(x => x.Author);
+            return db.Blog.Include(x => x.Author).OrderByDescending(x => x.PublishDate);
         }
 
-       
+        public IQueryable<Blog> GetBlogsByPage(int numberOfBlogs, int pageNumber = 0)
+        {
+            if (numberOfBlogs <=0)
+            {
+                throw new ArgumentException("Tell me the total number of blogs to get");
+            }
 
+            if (pageNumber < 0)
+            {
+                pageNumber = 0;
+            }
+
+            return GetAllBlogs().Skip(numberOfBlogs * pageNumber).Take(numberOfBlogs);
+        }
 
         public Blog GetBlog(int id)
         {
@@ -53,10 +65,6 @@ namespace MyChild.Data.Service
 
         }
 
-        private bool BlogExists(int id)
-        {
-            return db.Blog.Count(e => e.Id == id) > 0;
-        }
 
         public int DeleteBlog(int id)
         {
@@ -64,7 +72,11 @@ namespace MyChild.Data.Service
 
             db.Blog.Remove(blog);
             return db.SaveChanges();
+        }
 
+        private bool BlogExists(int id)
+        {
+            return db.Blog.Count(e => e.Id == id) > 0;
         }
     }
 }
