@@ -1,4 +1,5 @@
-﻿using MyChild.Data.Models;
+﻿using mychild.service.Filters;
+using MyChild.Data.Models;
 using MyChild.Data.Service;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+
 
 namespace mychild.service.Controllers
 {
@@ -36,12 +38,13 @@ namespace mychild.service.Controllers
         //    return new BlogService().GetBlogsByPage(pageLength, pageNumber);
         //}
 
-
+        [JwtAuthentication]
         public Blog GetById(int id)
         {
             return new BlogService().GetBlog(id);
         }
 
+        
         public void Post([FromBody]Blog blog)
         {
             new BlogService().AddBlog(blog);
